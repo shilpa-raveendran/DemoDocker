@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    image: shilparaveendran/dockerdemo:1.0.0
+    ports:
+      - 8080:8080
+    environment:
+      SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/SAMPLE?serverTimeZone=UTC&useSSL=false
+      SPRING.DATASOURCE.USERNAME: admin
+      SPRING.DATASOURCE.PASSWORD: root
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.27
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: SAMPLE
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
